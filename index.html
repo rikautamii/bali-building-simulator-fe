@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASTA KOSALA KOSALI</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#74250A', 
+              secondary: '#FCBAA3'
+            },
+            fontFamily: {
+              display: ['Poppins']
+            },
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="app">
+      <header class="flex justify-between items-center px-8 py-4" style="background-color: #F2EDE5;">
+        <div class="flex items-center gap-4">
+          <img src="logo.png" alt="Logo" class="w-10">
+          <h1 class="text-xl font-bold text-primary">ASTA KOSALA KOSALI</h1>
+        </div>
+        <nav class="flex gap-4">
+          <a href="#" class="text-primary">Home</a>
+          <a href="#" class="text-primary">Tentang</a>
+          <a href="#" class="text-primary">FAQ</a>
+          <a href="#" class="px-4 py-2 bg-secondary text-white rounded">Masuk</a>
+          <a href="#" class="px-4 py-2 bg-primary text-white rounded">Daftar</a>
+        </nav>
+      </header>
+
+      <main class="px-8 py-4">
+        <section class="mb-8">
+          <h2 class="text-3xl font-bold text-primary mb-4">Simulator Desain Rumah</h2>
+          <p class="text-gray-600 mb-4">Gunakan simulator kami untuk mendesain rumah tradisional Bali Anda dengan mudah dan cepat.</p>
+        </section>
+        
+        <section class="px-6 py-8 rounded-lg shadow-md" style="background-color: #F2EDE5;">
+          <h2 class="text-2xl font-bold text-primary mb-4">Tentang Simulator</h2>
+          <p class="text-gray-600">Simulator ini dirancang untuk membantu Anda membuat desain rumah tradisional Bali yang sesuai dengan filosofi ASTA KOSALA KOSALI.</p>
+        </section>
+
+        <section class="mt-8">
+          <h2 class="text-2xl font-bold text-primary mb-4">Pertanyaan yang Sering Diajukan</h2>
+          <div class="space-y-4">
+            <details class="p-4 rounded" style="background-color: #F2EDE5;">
+              <summary class="cursor-pointer font-bold">Apa itu Simulator Desain Rumah?</summary>
+              <p class="mt-2 text-gray-600">Simulator Desain Rumah adalah alat yang dirancang untuk membantu Anda menciptakan desain rumah tradisional Bali.</p>
+            </details>
+            <details class="p-4 rounded" style="background-color: #F2EDE5;">
+              <summary class="cursor-pointer font-bold">Bagaimana cara menyimpan desain saya?</summary>
+              <p class="mt-2 text-gray-600">Desain Anda dapat disimpan melalui tombol "Simpan Desain" yang tersedia setelah Anda selesai mendesain.</p>
+            </details>
+            <details class="p-4 rounded" style="background-color: #F2EDE5;">
+              <summary class="cursor-pointer font-bold">Apakah desain dapat diunduh?</summary>
+              <p class="mt-2 text-gray-600">Ya, Anda dapat mengunduh desain Anda dalam format PDF atau gambar.</p>
+            </details>
+          </div>
+        </section>
+      </main>
+
+      <footer class="px-8 py-4 bg-gray-100 flex justify-between items-center">
+        <p class="text-gray-600">&copy; 2024 ASTA KOSALA KOSALI</p>
+        <a href="simulator.html" class="px-4 py-2 bg-primary text-white rounded">Coba Sekarang!</a>
+      </footer>
+    </div>
+  </body>
+</html>

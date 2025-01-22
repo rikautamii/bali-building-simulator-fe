@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asta Kosala Kosali</title>
+    <style>
+      .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px; /* Jarak antara tombol */
+        margin-top: 20px; 
+        width: 100%;
+      }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#74250A', 
+              secondary: '#FCBAA3',
+              bgLight: '#F5EFEA',
+            },
+            fontFamily: {
+              sans: ['Poppins', 'sans-serif'],
+            },
+            dropShadow: {
+              input: '-10px 10px 30px rgba(174, 174, 174, 0.2)',
+            },
+          }
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-bgLight font-sans">
+    <!-- Navbar -->
+    <nav class="bg-bgLight p-4 shadow-md">
+      <div class="container mx-auto flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <img src="logo.png" alt="Logo" class="h-8" />
+          <h1 class="text-primary font-semibold text-lg">Asta Kosala Kosali</h1>
+        </div>
+        <ul class="flex gap-6 text-primary">
+          <li><a href="#" class="hover:underline">Home</a></li>
+          <li><a href="#" class="hover:underline">Tentang</a></li>
+          <li><a href="#" class="hover:underline">FAQ</a></li>
+        </ul>
+        <div class="flex gap-4">
+          <button class="bg-secondary text-white py-2 px-4 rounded">Masuk</button>
+          <button class="bg-primary text-white py-2 px-4 rounded">Daftar</button>
+        </div>
+      </div>
+    </nav>
+
+    <div id="app"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- Babel Script -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="js/app.js" type="text/jsx">
+    </script>
+  </body>
+</html>
