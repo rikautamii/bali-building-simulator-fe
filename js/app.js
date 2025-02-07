@@ -166,11 +166,13 @@ function Menu3() {
   const [sideFootLength, setSideFootLength] = React.useState(0);
   const [image, setImage] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
+  const [landLength, setLandLength] = React.useState(0);
+  const [landWidth, setLandWidth] = React.useState(0);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const fields = { landDirection, footLength, sideFootLength, BaliOrientation };
+    const fields = { landDirection, footLength, sideFootLength, landLength, landWidth, BaliOrientation };
 
     setLoading(true);
 
@@ -244,6 +246,32 @@ function Menu3() {
             className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
             placeholder="Masukkan lebar"
             onChange={(e) => setSideFootLength(parseFloat(e.target.value))}
+            required
+          />
+        </div>
+
+        <div className="mb-4">
+          <label for="plahan" class="block text-primary font-medium">Panjang Lahan (m)</label>
+          <input
+            type="text"
+            pattern="^\d*(\.\d{0,5})?$"
+            id="lebar"
+            className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
+            placeholder="Masukkan panjang lahan"
+            onChange={(e) => setLandLength(parseFloat(e.target.value))}
+            required
+          />
+        </div>
+
+        <div className="mb-4">
+          <label for="llahan" class="block text-primary font-medium">Lebar Lahan (m)</label>
+          <input
+            type="text"
+            pattern="^\d*(\.\d{0,5})?$"
+            id="lebar"
+            className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
+            placeholder="Masukkan lebar lahan"
+            onChange={(e) => setLandWidth(parseFloat(e.target.value))}
             required
           />
         </div>
