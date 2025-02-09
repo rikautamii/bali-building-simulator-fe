@@ -59,7 +59,7 @@ function Menu2() {
     setLoading(true);
 
     const response = await fetch(
-      "https://bali-building-simulator-api-7n41.vercel.app/api/locationDoor",
+      "http://localhost:9000/api/locationDoor",
       {
         method: "POST",
         body: JSON.stringify(fields),
@@ -168,6 +168,19 @@ function Menu3() {
   const [loading, setLoading] = React.useState(false);
   const [landLength, setLandLength] = React.useState(0);
   const [landWidth, setLandWidth] = React.useState(0);
+  const [landArea, setLandArea] = React.useState(null);
+
+  const calculateArea = () => {
+    if (!isNaN(landLength) && !isNaN(landWidth) && landLength > 0 && landWidth > 0) {
+      setLandArea((landLength * landWidth).toFixed(2));
+    } else {
+      setLandArea(null);
+    }
+  };
+
+  React.useEffect(() => {
+    calculateArea();
+  }, [landLength, landWidth]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -177,7 +190,7 @@ function Menu3() {
     setLoading(true);
 
     const response = await fetch(
-      "https://bali-building-simulator-api-7n41.vercel.app/api/buildingLocation",
+      "http://localhost:9000/api/buildingLocation",
       {
         method: "POST",
         body: JSON.stringify(fields),
@@ -225,9 +238,9 @@ function Menu3() {
         </div>
 
         <div className="mb-4">
-          <label for="panjangtk" class="block text-primary font-medium">Panjang Telapak Kaki (cm)</label>
+          <label for="panjangtk" class="block text-primary font-medium">Panjang Telapak Kaki / A Tampak Batis (cm)</label>
           <input
-            type="text"
+            type="number"
             pattern="^\d*(\.\d{0,5})?$"
             id="panjangtk"
             className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
@@ -238,9 +251,9 @@ function Menu3() {
         </div>
 
         <div className="mb-4">
-          <label for="lebar" class="block text-primary font-medium">Lebar Telapak Kaki (cm)</label>
+          <label for="lebar" class="block text-primary font-medium">Lebar Telapak Kaki / A Tampak Batis Ngandang (cm)</label>
           <input
-            type="text"
+            type="number"
             pattern="^\d*(\.\d{0,5})?$"
             id="lebar"
             className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
@@ -253,12 +266,12 @@ function Menu3() {
         <div className="mb-4">
           <label for="plahan" class="block text-primary font-medium">Panjang Lahan (m)</label>
           <input
-            type="text"
+            type="number"
             pattern="^\d*(\.\d{0,5})?$"
-            id="lebar"
+            id="landLength"
             className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
             placeholder="Masukkan panjang lahan"
-            onChange={(e) => setLandLength(parseFloat(e.target.value))}
+            onChange={(e) => setLandLength(parseFloat(e.target.value) || 0)} 
             required
           />
         </div>
@@ -266,15 +279,19 @@ function Menu3() {
         <div className="mb-4">
           <label for="llahan" class="block text-primary font-medium">Lebar Lahan (m)</label>
           <input
-            type="text"
+            type="number"
             pattern="^\d*(\.\d{0,5})?$"
-            id="lebar"
+            id="landWidth"
             className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
             placeholder="Masukkan lebar lahan"
-            onChange={(e) => setLandWidth(parseFloat(e.target.value))}
+            onChange={(e) => setLandWidth(parseFloat(e.target.value) || 0)}
             required
           />
         </div>
+
+        {landArea !== null && (
+          <p className="text-lg font-semibold text-primary">Luas Lahan: {landArea} m²</p>
+        )}
 
         <button
           className={`w-full inline-flex items-center justify-center bg-primary text-white text-[14px] md:text-[16px] py-[8px] md:py-[10px] rounded-[5px] mt-[20px] md:mt-[40px] ${
@@ -306,6 +323,7 @@ function Menu3() {
           </svg>
           Proses
         </button>
+
         {image && (
           <img
             className="col-span-2 mt-4"
