@@ -59,7 +59,7 @@ function Menu2() {
     setLoading(true);
 
     const response = await fetch(
-      "http://localhost:9000/api/locationDoor",
+      "https://bali-building-simulator-api-7n41.vercel.app/api/locationDoor",
       {
         method: "POST",
         body: JSON.stringify(fields),
@@ -190,7 +190,7 @@ function Menu3() {
     setLoading(true);
 
     const response = await fetch(
-      "http://localhost:9000/api/buildingLocation",
+      "https://bali-building-simulator-api-7n41.vercel.app/api/buildingLocation",
       {
         method: "POST",
         body: JSON.stringify(fields),
