@@ -185,6 +185,15 @@ function Menu3() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (landLength < 10 || landWidth < 10) {
+      Swal.fire({
+        icon: "warning",
+        title: "Ukuran lahan terlalu kecil!",
+        text: "Pastikan panjang dan lebar lahan minimal 10 meter.",
+      });
+      return;
+    }
+
     const fields = { landDirection, footLength, sideFootLength, landLength, landWidth, BaliOrientation };
 
     setLoading(true);
@@ -201,6 +210,7 @@ function Menu3() {
     );
 
     const json = await response.json();
+
 
     if (response.ok) {
       setImage(`data:image/png;base64,${json.bytesImg}`);
