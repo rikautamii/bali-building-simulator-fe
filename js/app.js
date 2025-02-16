@@ -169,6 +169,9 @@ function Menu3() {
   const [landLength, setLandLength] = React.useState(0);
   const [landWidth, setLandWidth] = React.useState(0);
   const [landArea, setLandArea] = React.useState(null);
+  const [history, setHistory] = React.useState(() => {
+    return JSON.parse(localStorage.getItem("landHistory")) || [];
+  });
 
   const calculateArea = () => {
     if (!isNaN(landLength) && !isNaN(landWidth) && landLength > 0 && landWidth > 0) {
@@ -210,12 +213,62 @@ function Menu3() {
     );
 
     const json = await response.json();
-
+    
+    
 
     if (response.ok) {
       setImage(`data:image/png;base64,${json.bytesImg}`);
       setLoading(false);
+
+      const newEntry = {
+        landDirection,
+        BaliOrientation,
+        landLength,
+        landWidth,
+        footLength, sideFootLength,
+        landArea: (landLength * landWidth).toFixed(2),
+        result11: (3 * footLength + sideFootLength) / 100,
+        result12: (16 * footLength + sideFootLength) / 100,
+        result13: (5 * footLength + sideFootLength) / 100,
+        result14: (9 * footLength + sideFootLength) / 100,
+        result15: (8 * footLength + sideFootLength) / 100,
+        result16: (15 * footLength + sideFootLength) / 100,
+        result17: (6 * footLength + sideFootLength) / 100,
+        result18: (22 * footLength + sideFootLength) / 100,
+        result19: (25 * footLength + sideFootLength) / 100,
+        result10: (7 * footLength + sideFootLength) / 100,
+        result21: (11 * footLength + sideFootLength) / 100,
+        result22: (24 * footLength + sideFootLength) / 100,
+        result23: (13 * footLength + sideFootLength) / 100,
+        result24: (17 * footLength + sideFootLength) / 100,
+        result25: (16 * footLength + sideFootLength) / 100,
+        result26: (23 * footLength + sideFootLength) / 100,
+        result27: (14 * footLength + sideFootLength) / 100,
+        result28: (30 * footLength + sideFootLength) / 100,
+        result29: (33 * footLength + sideFootLength) / 100,
+        result20: (15 * footLength + sideFootLength) / 100,
+        result31: (19 * footLength + sideFootLength) / 100,
+        result32: (32 * footLength + sideFootLength) / 100,
+        result33: (21 * footLength + sideFootLength) / 100,
+        result34: (25 * footLength + sideFootLength) / 100,
+        result35: (24 * footLength + sideFootLength) / 100,
+        result36: (31 * footLength + sideFootLength) / 100,
+        result37: (22 * footLength + sideFootLength) / 100,
+        result38: (38 * footLength + sideFootLength) / 100,
+        result39: (41 * footLength + sideFootLength) / 100,
+        result30: (23 * footLength + sideFootLength) / 100,
+      };
+
+      
+      const updatedHistory = [newEntry, ...history.slice(0, 4)]; 
+      setHistory(updatedHistory);
+      localStorage.setItem("landHistory", JSON.stringify(updatedHistory));
     }
+  };
+
+  const clearLocalStorage = () => {
+    localStorage.removeItem("landHistory");
+    setHistory([]); 
   };
 
   return (
@@ -341,6 +394,156 @@ function Menu3() {
             alt="Tata Letak Bangunan Bali"
           />
         )}
+
+        <div className="mt-6">
+          <h2 className="text-lg font-semibold text-primary">Riwayat Pencarian</h2>
+          {history.length > 0 ? (
+            <table className="w-full mt-4 border-collapse border border-gray-300">
+              <thead>
+                <tr className="bg-gray-200 text-primary">
+                  <th className="border border-gray-300 px-4 py-2 text-xs">Parameter</th>
+                  <th className="border border-gray-300 px-4 py-2 text-xs">Input</th>
+                  <th className="border border-gray-300 px-20 py-2 text-xs">Jarak Bangunan</th>
+                  <th className="border border-gray-300 px-20 py-2 text-xs">Persamaan</th>
+                  <th className="border border-gray-300 px-4 py-2 text-xs">Hasil Perhitungan</th>
+                </tr>
+              </thead>
+              <tbody>
+              {history.map((entry, index) => (
+                <tr key={index} className="text-center">
+                  <td className="border border-gray-300 px-2 py-2 text-xs text-left">
+                    Arah Letak Pintu <br />
+                    Panjang Telapak Kaki (cm) <br />
+                    Lebar Telapak Kaki (cm) <br />
+                    Panjang Lahan (m) <br />
+                    Lebar Lahan (m) <br />
+                    Luas Lahan (m²) <br />
+                  </td>
+                  <td className="border border-gray-300 px-2 py-2 text-xs text-left">
+                    {entry.landDirection} <br />
+                    {entry.footLength} <br />
+                    {entry.sideFootLength} <br />
+                    {entry.landLength} <br />
+                    {entry.landWidth} <br />
+                    {entry.landArea} <br />
+                    </td>
+                  <td className="border border-gray-300 px-2 py-2 text-xs text-left">
+                    merajan - bale daja <br />
+                    bale daja - tembok <br />
+                    bale daje - bale kelod <br />
+                    bale kauh - bale kangin <br />
+                    bale daja - tembok <br />
+                    bale daja - bale dauh <br />
+                    bale dauh - dapur <br />
+                    bale daja - dapur <br />
+                    bale daja - jineng <br />
+                    penunggun karang - tembok <br />
+                  </td>
+                  <td className="border border-gray-300 px-2 py-2 text-left text-xs">
+                  {entry.landLength >= 10 && entry.landLength <= 12 && 
+                  entry.landWidth >= 10 && entry.landWidth <= 11 ? (
+                    <>
+                      3 * footLength + sideFootLength (Guru) <br />
+                      16 * footLength + sideFootLength (Uma) <br />
+                      5 * footLength + sideFootLength (Rudra) <br />
+                      9 * footLength + sideFootLength (Sri) <br />
+                      8 * footLength + sideFootLength (Uma) <br />
+                      15 * footLength + sideFootLength (Kala) <br />
+                      6 * footLength + sideFootLength (Brahma) <br />
+                      22 * footLength + sideFootLength (Brahma) <br />
+                      25 * footLength + sideFootLength (Sri) <br />
+                      7 * footLength + sideFootLength (Kala)
+                      </>
+                    ) : entry.landLength >= 13 && entry.landLength <= 16 && 
+                    entry.landWidth >= 12 && entry.landWidth <= 13 ? (
+                      <>
+                      11 * footLength + sideFootLength (Guru) <br />
+                      24 * footLength + sideFootLength (Uma) <br />
+                      13 * footLength + sideFootLength (Rudra) <br />
+                      17 * footLength + sideFootLength (Sri) <br />
+                      16 * footLength + sideFootLength (Uma) <br />
+                      23 * footLength + sideFootLength (Kala) <br />
+                      14 * footLength + sideFootLength (Brahma) <br />
+                      30 * footLength + sideFootLength (Brahma) <br />
+                      33 * footLength + sideFootLength (Sri) <br />
+                      15 * footLength + sideFootLength (Kala)
+                      </>
+                    ) : (
+                      <>
+                      19 * footLength + sideFootLength (Guru) <br />
+                      24 * footLength + sideFootLength (Uma) <br />
+                      13 * footLength + sideFootLength (Rudra) <br />
+                      17 * footLength + sideFootLength (Sri) <br />
+                      16 * footLength + sideFootLength (Uma) <br />
+                      23 * footLength + sideFootLength (Kala) <br />
+                      14 * footLength + sideFootLength (Brahma) <br />
+                      30 * footLength + sideFootLength (Brahma) <br />
+                      33 * footLength + sideFootLength (Sri) <br />
+                      15 * footLength + sideFootLength (Kala)
+                      </>
+                    )}
+                  </td>
+                  <td className="border border-gray-300 px-7 py-2 text-left text-xs">
+                  {entry.landLength >= 10 && entry.landLength <= 12 && 
+                  entry.landWidth >= 10 && entry.landWidth <= 11 ? (
+                    <>
+                      {entry.result11} <br />
+                      {entry.result12} <br />
+                      {entry.result13} <br />
+                      {entry.result14} <br />
+                      {entry.result15} <br />
+                      {entry.result16} <br />
+                      {entry.result17} <br />
+                      {entry.result18} <br />
+                      {entry.result19} <br />
+                      {entry.result10}
+                      </>
+                    ) : entry.landLength >= 13 && entry.landLength <= 16 && 
+                    entry.landWidth >= 12 && entry.landWidth <= 13 ? (
+                      <>
+                        {entry.result21} <br />
+                        {entry.result22} <br />
+                        {entry.result23} <br />
+                        {entry.result24} <br />
+                        {entry.result25} <br />
+                        {entry.result26} <br />
+                        {entry.result27} <br />
+                        {entry.result28} <br />
+                        {entry.result29} <br />
+                        {entry.result20}
+                      </>
+                    ) : (
+                      <>
+                        {entry.result31} <br />
+                        {entry.result32} <br />
+                        {entry.result33} <br />
+                        {entry.result34} <br />
+                        {entry.result35} <br />
+                        {entry.result36} <br />
+                        {entry.result37} <br />
+                        {entry.result38} <br />
+                        {entry.result39} <br />
+                        {entry.result30}
+                      </>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+            </table>
+          ) : (
+            <p className="text-gray-500">Belum ada riwayat pencarian.</p>
+          )}
+        </div>
+
+        <button 
+        onClick={clearLocalStorage} 
+        className="bg-red-500 text-white px-4 py-2 rounded mt-4"
+        >
+          Hapus Riwayat
+        </button>
+
+
       </form>
     </div>
   );
