@@ -17,22 +17,22 @@ function App() {
       <div className="button-container">
         <div
           onClick={() => handleMenu("2")}
-          className={`bg-primary py-[20px] md:py-[15px] my-10 md:my-5 rounded-[5px] cursor-pointer ${
+          className={`bg-primary py-[20px] px-[30px] md:py-[15px] md:px-[40px] my-10 md:my-5 rounded-[5px] cursor-pointer ${
             menu === "2" && "bg-secondary"
           }`}
         >
           <p className="text-white text-center text-[14px] md:text-[16px] font-display">
-            Letak Pintu Pekarangan
+            Location of Yard Door
           </p>
         </div>
         <div
           onClick={() => handleMenu("3")}
-          className={`bg-primary py-[20px] md:py-[15px] my-10 md:my-5 rounded-[5px] cursor-pointer ${
+          className={`bg-primary py-[20px] px-[30px] md:py-[15px] md:px-[40px] my-10 md:my-5 rounded-[5px] cursor-pointer ${
             menu === "3" && "bg-secondary"
           }`}
         >
           <p className="text-white text-center text-[14px] md:text-[16px] font-display">
-            Tata Letak Bangunan
+            Building Layout
           </p>
           </div>
       </div>
@@ -81,29 +81,29 @@ function Menu2() {
     <div className="bg-white shadow-lg rounded p-6 max-w-4xl mx-auto">
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label for="panjang" class="block text-primary font-medium">Panjang Pekarangan (m)</label>
+          <label for="panjang" class="block text-primary font-medium">Yard Length (m)</label>
           <input
             type="text"
             id="panjang"
             pattern="^\d*(\.\d{0,5})?$"
             className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
-            placeholder="Masukkan panjang"
+            placeholder="Enter yard length"
             onChange={(e) => setYardLength(e.target.value)}
             required
           />
       </div>
 
       <div class="mb-6">
-      <label for="arah" class="block text-primary font-medium">Arah Lahan</label>
+      <label for="arah" class="block text-primary font-medium">Land Direction</label>
         <select
           className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
           id="arah"
           onChange={(e) => setLandDirection(e.target.value)}
         >
-          <option value="utara">Utara</option>
-          <option value="timur">Timur</option>
-          <option value="selatan">Selatan</option>
-          <option value="barat">Barat</option>
+          <option value="utara">North</option>
+          <option value="timur">East</option>
+          <option value="selatan">South</option>
+          <option value="barat">West</option>
         </select>
       </div>
 
@@ -135,7 +135,7 @@ function Menu2() {
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
             ></path>
           </svg>
-          Proses
+          Process
         </button>
         {data && (
           <div className="md:col-span-2 lg:grid lg:grid-cols-5 gap-2 mt-4">
@@ -146,7 +146,7 @@ function Menu2() {
             />
             <div className="col-span-2 bg-primary rounded-md p-4 text-white my-4 lg:my-0 text-[14px] md:text-[16px]">
               <p className="uppercase font-semibold">
-                Filosofi Letak Setiap Pintu
+                Philosophy of the Location of Each Yard Door
               </p>
               {Object.entries(data.philosophy).map(([k, v]) => (
                 <p key={k}>{`${k}. ${v.bhsBali} = ${v.bhsIndonesia} (${v.locationValue})`}</p>
@@ -160,7 +160,7 @@ function Menu2() {
 }
 
 function Menu3() {
-  const [landDirection, setLandDirection] = React.useState("utara");
+  const [landDirection, setLandDirection] = React.useState("north");
   const [BaliOrientation, setBaliOrientation] = React.useState("baliutara");
   const [footLength, setFootLength] = React.useState(0);
   const [sideFootLength, setSideFootLength] = React.useState(0);
@@ -191,8 +191,8 @@ function Menu3() {
     if (landLength < 10 || landWidth < 10) {
       Swal.fire({
         icon: "warning",
-        title: "Ukuran lahan terlalu kecil!",
-        text: "Pastikan panjang dan lebar lahan minimal 10 meter.",
+        title: "The land size is too small!",
+        text: "Make sure the length and width of the land is at least 10 meters.",
       });
       return;
     }
@@ -275,85 +275,85 @@ function Menu3() {
     <div className="bg-white shadow-lg rounded p-6 max-w-5xl mx-auto">
       <form onSubmit={handleSubmit}>
         <div className="mb-6">
-          <label for="letak" class="block text-primary font-medium">Arah Letak Pintu</label>
+          <label for="letak" class="block text-primary font-medium">Gate Direction</label>
           <select
             id="letak"
             className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
             onChange={(e) => setLandDirection(e.target.value)}
           >
-            <option value="utara">Utara</option>
-            <option value="timur">Timur</option>
-            <option value="selatan">Selatan</option>
-            <option value="barat">Barat</option>
+            <option value="north">North</option>
+            <option value="east">East</option>
+            <option value="south">South</option>
+            <option value="west">West</option>
           </select>
         </div>
 
         <div class="mb-6">
-          <label for="orientasi" class="block text-primary font-medium">Orientasi Lahan</label>
+          <label for="orientasi" class="block text-primary font-medium">Land Orientation</label>
             <select
               className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
               id="orientasi"
               onChange={(e) => setBaliOrientation(e.target.value)}
             >
-              <option value="baliutara">Bali Utara</option>
-              <option value="baliselatan">Bali Selatan</option>
+              <option value="baliutara">North Bali</option>
+              <option value="baliselatan">South Bali</option>
             </select>
         </div>
 
         <div className="mb-4">
-          <label for="panjangtk" class="block text-primary font-medium">Panjang Telapak Kaki / A Tampak Batis (cm)</label>
+          <label for="panjangtk" class="block text-primary font-medium">Foot Length (cm)</label>
           <input
             type="number"
             pattern="^\d*(\.\d{0,5})?$"
             id="panjangtk"
             className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
-            placeholder="Masukkan panjang"
+            placeholder="Enter foot length"
             onChange={(e) => setFootLength(parseFloat(e.target.value))}
             required
           />
         </div>
 
         <div className="mb-4">
-          <label for="lebar" class="block text-primary font-medium">Lebar Telapak Kaki / A Tampak Batis Ngandang (cm)</label>
+          <label for="lebar" class="block text-primary font-medium">Side Foot Length (cm)</label>
           <input
             type="number"
             pattern="^\d*(\.\d{0,5})?$"
             id="lebar"
             className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
-            placeholder="Masukkan lebar"
+            placeholder="Enter side foot length"
             onChange={(e) => setSideFootLength(parseFloat(e.target.value))}
             required
           />
         </div>
 
         <div className="mb-4">
-          <label for="plahan" class="block text-primary font-medium">Panjang Lahan (m)</label>
+          <label for="plahan" class="block text-primary font-medium">Land Length (m)</label>
           <input
             type="number"
             pattern="^\d*(\.\d{0,5})?$"
             id="landLength"
             className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
-            placeholder="Masukkan panjang lahan"
+            placeholder="Enter land length"
             onChange={(e) => setLandLength(parseFloat(e.target.value) || 0)} 
             required
           />
         </div>
 
         <div className="mb-4">
-          <label for="llahan" class="block text-primary font-medium">Lebar Lahan (m)</label>
+          <label for="llahan" class="block text-primary font-medium">Land Width (m)</label>
           <input
             type="number"
             pattern="^\d*(\.\d{0,5})?$"
             id="landWidth"
             className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
-            placeholder="Masukkan lebar lahan"
+            placeholder="Enter land width"
             onChange={(e) => setLandWidth(parseFloat(e.target.value) || 0)}
             required
           />
         </div>
 
         {landArea !== null && (
-          <p className="text-lg font-semibold text-primary">Luas Lahan: {landArea} m²</p>
+          <p className="text-lg font-semibold text-primary">Land Area: {landArea} m²</p>
         )}
 
         <button
@@ -384,7 +384,7 @@ function Menu3() {
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
             ></path>
           </svg>
-          Proses
+          Process
         </button>
 
         {image && (
@@ -396,28 +396,28 @@ function Menu3() {
         )}
 
         <div className="mt-6">
-          <h2 className="text-lg font-semibold text-primary">Riwayat Pencarian</h2>
+          <h2 className="text-lg font-semibold text-primary">Search History</h2>
           {history.length > 0 ? (
             <table className="w-full mt-4 border-collapse border border-gray-300">
               <thead>
                 <tr className="bg-gray-200 text-primary">
                   <th className="border border-gray-300 px-4 py-2 text-xs">Parameter</th>
                   <th className="border border-gray-300 px-4 py-2 text-xs">Input</th>
-                  <th className="border border-gray-300 px-20 py-2 text-xs">Jarak Bangunan</th>
-                  <th className="border border-gray-300 px-20 py-2 text-xs">Persamaan</th>
-                  <th className="border border-gray-300 px-4 py-2 text-xs">Hasil Perhitungan</th>
+                  <th className="border border-gray-300 px-20 py-2 text-xs">Building Distance</th>
+                  <th className="border border-gray-300 px-20 py-2 text-xs">Formula</th>
+                  <th className="border border-gray-300 px-4 py-2 text-xs">Calculation Results</th>
                 </tr>
               </thead>
               <tbody>
               {history.map((entry, index) => (
                 <tr key={index} className="text-center">
                   <td className="border border-gray-300 px-2 py-2 text-xs text-left">
-                    Arah Letak Pintu <br />
-                    Panjang Telapak Kaki (cm) <br />
-                    Lebar Telapak Kaki (cm) <br />
-                    Panjang Lahan (m) <br />
-                    Lebar Lahan (m) <br />
-                    Luas Lahan (m²) <br />
+                    Door Direction <br />
+                    Foot Length (cm) <br />
+                    Side Foot Length (cm) <br />
+                    Land Length (m) <br />
+                    Land Width (m) <br />
+                    Land Area (m²) <br />
                   </td>
                   <td className="border border-gray-300 px-2 py-2 text-xs text-left">
                     {entry.landDirection} <br />
@@ -430,7 +430,7 @@ function Menu3() {
                   <td className="border border-gray-300 px-2 py-2 text-xs text-left">
                     merajan - bale daja <br />
                     bale daja - tembok <br />
-                    bale daje - bale kelod <br />
+                    bale daje - bale delod <br />
                     bale kauh - bale kangin <br />
                     bale daja - tembok <br />
                     bale daja - bale dauh <br />
@@ -532,7 +532,7 @@ function Menu3() {
             </tbody>
             </table>
           ) : (
-            <p className="text-gray-500">Belum ada riwayat pencarian.</p>
+            <p className="text-gray-500">There is no search history yet.</p>
           )}
         </div>
 
@@ -540,7 +540,7 @@ function Menu3() {
         onClick={clearLocalStorage} 
         className="bg-red-500 text-white px-4 py-2 rounded mt-4"
         >
-          Hapus Riwayat
+          Clear History
         </button>
 
 
@@ -567,7 +567,7 @@ function Simulator() {
             }`}
           >
             <p className="text-white text-center text-[14px] md:text-[16px] font-display">
-              Letak Pintu Pekarangan
+              Location of Yard Door
             </p>
           </div>
           <div
@@ -577,7 +577,7 @@ function Simulator() {
             }`}
           >
             <p className="text-white text-center text-[14px] md:text-[16px] font-display">
-              Tata Letak Bangunan
+              Building Layout
             </p>
           </div>
         </div>
